@@ -190,6 +190,29 @@ highest_scorer = ""
   return highest_scorer
 end
 
+def winning_team
+home = 0 
+away = 0
+  game_hash.each do |location, team_data|
+    if location == :home
+      team_data[:players].each do |player|
+        home = home + player[:points]
+      end
+    else location == :away 
+      team_data[:players].each do |player|
+        away = away + player[:points]
+      end
+    end
+  end 
+  if home > away 
+    return game_hash[:home][:team_name]
+  elsif away > home  
+    return game_hash[:away][:team_name]
+  else 
+    return "It's a tie!"
+  end
+end
+
 def player_with_longest_name
   longest_name_length = 0 
   longest_name = "" 
