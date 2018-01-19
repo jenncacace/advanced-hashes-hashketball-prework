@@ -176,4 +176,16 @@ rebounds = 0
   return rebounds 
 end 
   
-
+def most_points_scored 
+points = 0 
+highest_scorer = ""
+  game_hash.each do |location, team_data| 
+    team_data[:players].each do |player|
+      if player[:points] > points
+        points = player[:points]
+        highest_scorer = player[:player_name]
+      end
+    end
+  end
+  return highest_scorer
+end
